@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculator</title>
+  <style>
+    /* Basic Styles for the body to center the calculator*/
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #dfddd0;
+      margin: 0;
+      text-align: center;
+    }
+    h1{
+      font-style: italic;
+      font-size: 40px;
+      margin-bottom: 30px;
+      
+    }
+
+    /* Styling the calculator container*/
+    .calculator {
+      width: 300px;
+      background: gray;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+     /* Styling the display area*/
+    #display {
+      width: 89%;
+      height: 60px;
+      text-align: right;
+      font-size: 24px;
+      border: 2px solid #6b6868;
+      border-radius: 5px;
+      padding: 10px;
+      margin: 5px;
+    }
+
+     /*Styling for calculator buttons*/
+    .buttons {
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    button {
+      margin: 5px;
+      padding: 15px;
+      font-size: 18px;
+      border: 2px solid #585d64;
+      background-color: #ffffff;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<h1>Simple Calculator</h1>
+<body>
+  <div class="calculator">
+
+    <!-- Input field for displaying the current calculation -->
+    <input type="text" id="display" readonly />
+
+     <!-- Buttons for the calculator -->
+    <div class="buttons">
+
+      <!-- Clear all, square, percentage, and division buttons -->
+      <button onclick="clearDisplay()">AC</button>
+      <button onclick="square()">x²</button>
+      <button onclick="append('%')">%</button>
+      <button onclick="append('/')">/</button>
+
+       <!-- Number buttons -->
+      <button onclick="append('7')">7</button>
+      <button onclick="append('8')">8</button>
+      <button onclick="append('9')">9</button>
+
+       <!-- Multipilication button -->
+      <button onclick="append('*')">*</button>
+
+       <!-- Number buttons -->
+      <button onclick="append('4')">4</button>
+      <button onclick="append('5')">5</button>
+      <button onclick="append('6')">6</button>
+
+       <!-- Addition button -->
+      <button onclick="append('+')">+</button>
+
+       <!-- Number buttons -->
+      <button onclick="append('1')">1</button>
+      <button onclick="append('2')">2</button>
+      <button onclick="append('3')">3</button>
+
+       <!--Subtraction button -->
+      <button onclick="append('-')">-</button>
+
+       <!-- button used for representing decimal -->
+      <button onclick="append('.')">.</button>
+
+       <!-- Number button -->
+      <button onclick="append('0')">0</button>
+
+      <!-- Delete last entry and calculate result buttons -->
+      <button onclick="deleteLast( )"> ⌫</button>
+      <button onclick="calculate()">=</button>
+    </div>
+  </div>
+  <script>
+
+     // Select the display element
+    let display = document.getElementById('display');
+
+    // Append a value to the display
+    function append(value) {
+      display.value += value;
+    }
+
+    // Clear the display
+    function clearDisplay() {
+      display.value = '';
+    }
+
+     // Square the current value
+    function square() {
+      try {
+        // Evaluate the current value and square it
+        display.value = Math.pow(eval(display.value), 2);
+      } catch {
+         // Handle invalid inputs gracefully
+        display.value = 'Error!';
+      }
+    }
+
+ // Delete the last character in the display
+    function deleteLast() {
+      display.value = display.value.slice(0, -1);
+    }
+
+    // Calculate the result of the expression
+    function calculate() {
+      try {
+         // Evaluate the expression
+        display.value = eval(display.value);
+      } catch {
+         // Handle invalid expressions gracefully
+        display.value = 'Error!';
+      }
+    }
+  </script>
+</body>
+</html>
